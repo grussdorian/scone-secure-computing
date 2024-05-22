@@ -1,0 +1,10 @@
+name: $SESSION_EX1/$SESSION_V
+version: "0.3"
+security:
+  attestation:
+    tolerate: [debug-mode, hyperthreading, outdated-tcb]
+    ignore_advisories: "*"
+volumes:
+  - name: my_encrypted_volume
+    export:
+      session: exercise_1/$SESSION_P1

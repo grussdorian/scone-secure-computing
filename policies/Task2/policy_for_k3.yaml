@@ -1,0 +1,10 @@
+name: $SESSION_EX1/$POLICY_K3
+
+version: "0.3"
+
+secrets:
+  - name: k3
+    kind: binary
+    size: 32
+    export:
+      session: $SESSION_EX1/$POLICY_P2

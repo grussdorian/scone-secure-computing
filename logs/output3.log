@@ -1,0 +1,5 @@
+bash-5.1 pwd
+/volumes/v1
+bash-5.1 ls
+file.txt     volume.fspf
+bash-5.1

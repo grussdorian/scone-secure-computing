@@ -1,0 +1,6 @@
+name: $SESSION_EX1
+version: "0.3"
+security:
+  attestation:
+    tolerate: [debug-mode, hyperthreading, outdated-tcb]
+    ignore_advisories: "*"

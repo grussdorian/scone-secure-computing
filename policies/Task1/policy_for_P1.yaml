@@ -1,0 +1,26 @@
+name: $SESSION_EX1/$SESSION_P1
+version: "0.3"
+security:
+  attestation:
+    mode: none
+    tolerate: [debug-mode, hyperthreading, outdated-tcb]
+    ignore_advisories: "*"
+    one_time_password_shared_secret: $OTPSECRET
+volumes:
+  - name: my_encrypted_volume
+images:
+  - name: my_image
+    volumes:
+      - name: my_encrypted_volume
+        path: /volumes/v1/
+services:
+  - name: P1
+    image_name: my_image
+    mrenclaves: [$MRENCLAVE]
+    command: ./P1 Assignment @@1 @@2 5184856
+    environment:
+      SCONE_MODE: hw
+      env1: version
+      env2: 3
+      env3: otp-variant
+    pwd: /

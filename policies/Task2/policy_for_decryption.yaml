@@ -1,0 +1,41 @@
+name: $SESSION_EX1/$POLICY_P2
+version: "0.3"
+
+security:
+  attestation:
+    mode: none
+
+secrets:
+  - name: k1
+    kind: binary
+    import:
+      session: $SESSION_EX1/$POLICY_K1
+      secret: k1
+  - name: k2
+    kind: binary
+    import:
+      session: $SESSION_EX1/$POLICY_K2
+      secret: k2
+  - name: k3
+    kind: binary
+    import:
+      session: $SESSION_EX1/$POLICY_K3
+      secret: k3
+
+volumes:
+  - name: my_encrypted_volume
+    import:
+      session: $SESSION_EX1/$SESSION_V
+      volume: my_encrypted_volume
+
+images:
+  - name: my_image
+    volumes:
+      - name: my_encrypted_volume
+        path: /volumes/v1
+
+services:
+  - name: decrypt
+    image_name: my_image
+    command: ./P2 -key1=\$\$SCONE::k1:hex\$\$ -key2=\$\$SCONE::k2:hex\$\$ -key3=\$\$SCONE::k3:hex\$\$
+    pwd: /
